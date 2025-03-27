@@ -6,6 +6,25 @@ from pathlib import Path
 from WaterNet.WaterNet_test import WaterNet_test
 from UWCNN.UWCNN_test import UWCNN_test
 
+import tensorflow as tf
+from functools import wraps
+
+def reset_graph(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        # 重置默认计算图
+        tf.reset_default_graph()
+        # 调用原始函数
+        result = func(*args, **kwargs)
+        # 关闭当前会话（如果存在）
+        if tf.get_default_session() is not None:
+            tf.get_default_session().close()
+        return result
+    return wrapper
+
+# 包装原始函数（无需修改原函数代码）
+UWCNN_test = reset_graph(UWCNN_test)
+
 def ensure_dir(directory):
     """创建目录（如果不存在）"""
     Path(directory).mkdir(parents=True, exist_ok=True)

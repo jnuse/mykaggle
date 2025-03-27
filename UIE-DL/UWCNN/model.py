@@ -55,7 +55,7 @@ class T_CNN(object):
   def train(self, config):
 
     # Stochastic gradient descent with the standard backpropagation,var_list=self.model_c_vars
-    image_test =  get_image('cache\\'+self.test_image_name,is_grayscale=False)
+    image_test =  get_image('/kaggle/working/testA/'+self.test_image_name,is_grayscale=False)
     shape = image_test.shape
     expand_test = image_test[np.newaxis,:,:,:]
     expand_zero = np.zeros([self.batch_size-1,shape[0],shape[1],shape[2]])
@@ -73,7 +73,7 @@ class T_CNN(object):
     for id in range(0,1):
 
         result_h0 = result_h[id,:,:,:].reshape(h , w , 3)
-        image_path0 = os.path.join(os.getcwd(), 'UWCNN\\output\\')
+        image_path0 = os.path.join(os.getcwd(), 'UWCNN/output/')
         final = (result_h0+1.)/2 
         name = self.test_image_name[:-4]+'_out.png'
         image_path = os.path.join(image_path0, name)

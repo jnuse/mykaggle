@@ -66,7 +66,7 @@ class T_CNN(object):
      
   def train(self, config):
 
-    image_testm =  cv.imread('cache\\'+self.name, cv.IMREAD_COLOR)
+    image_testm =  cv.imread('/kaggle/working/testA/'+self.name, cv.IMREAD_COLOR)
     image_test = cv.cvtColor(image_testm, cv.COLOR_BGR2RGB) / 255
     shape = image_test.shape
     expand_test = image_test[np.newaxis,:,:,:]
@@ -108,7 +108,7 @@ class T_CNN(object):
         result_h0 = result_h[id,:,:,:].reshape(h , w , 3)
         result_h0 = result_h0.squeeze()
         name = self.name[:-4]+'_out.png'
-        image_path0 = os.path.join(os.getcwd(), 'WaterNet\\output\\')
+        image_path0 = os.path.join(os.getcwd(), 'WaterNet/output/')
         image_path = os.path.join(image_path0, name)
         imsave_lable(result_h0,image_path)
         print(f"保存到:{image_path}")

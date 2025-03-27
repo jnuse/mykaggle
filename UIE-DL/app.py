@@ -46,21 +46,32 @@ def batch_process(input_folder, output_folder, modes=['UWCNN', 'WaterNet']):
                 start_time = time.time()
                 if mode == 'UWCNN':
                     output_name = UWCNN_test(filename)  # 假设返回处理后的文件名
+                    elapsed_time = time.time() - start_time
+                    total_time += elapsed_time
+                    # 移动结果到输出目录
+                    src_path = os.path.join(mode, "UWCNN/output/", output_name)  # 假设模型输出到此路径
+                    dst_path = os.path.join(model_output_dir, output_name)
+                    shutil.move(src_path, dst_path)
+                    print(f"  {mode} done. Time: {elapsed_time:.2f}s")
+                    
+                    # 清理输入缓存
+                    os.remove(input_cache_path)
                 elif mode == 'WaterNet':
                     output_name = WaterNet_test(filename)
+                    elapsed_time = time.time() - start_time
+                    total_time += elapsed_time
+                    # 移动结果到输出目录
+                    src_path = os.path.join(mode, "WaterNet/output/", output_name)  # 假设模型输出到此路径
+                    dst_path = os.path.join(model_output_dir, output_name)
+                    shutil.move(src_path, dst_path)
+                    print(f"  {mode} done. Time: {elapsed_time:.2f}s")
+                    
+                    # 清理输入缓存
+                    os.remove(input_cache_path)
                 else:
                     raise ValueError(f"Unsupported mode: {mode}")
-                elapsed_time = time.time() - start_time
-                total_time += elapsed_time
                 
-                # 移动结果到输出目录
-                src_path = os.path.join(mode, "output", output_name)  # 假设模型输出到此路径
-                dst_path = os.path.join(model_output_dir, output_name)
-                shutil.move(src_path, dst_path)
-                print(f"  {mode} done. Time: {elapsed_time:.2f}s")
-                
-                # 清理输入缓存
-                os.remove(input_cache_path)
+
                 
             except Exception as e:
                 print(f"  Error in {mode}: {str(e)}")

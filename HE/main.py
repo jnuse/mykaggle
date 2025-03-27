@@ -27,7 +27,13 @@ def apply_histogram_equalization(input_folder, output_folder):
             # img_yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
             # img_yuv[:,:,0] = cv2.equalizeHist(img_yuv[:,:,0])
             # equ = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
-            equ = cv2.equalizeHist(img)
+            channels = cv2.split(img)
+            eq_channels = []
+            for ch in channels:
+                eq_ch = cv2.equalizeHist(ch)  # 确保每个通道是 uint8
+                eq_channels.append(eq_ch)
+            equ = cv2.merge(eq_channels)
+            # equ = cv2.equalizeHist(img)
         else:
             # 灰度图像直接均衡化
             equ = cv2.equalizeHist(img)

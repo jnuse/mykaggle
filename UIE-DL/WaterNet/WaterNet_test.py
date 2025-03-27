@@ -26,7 +26,7 @@ flags.DEFINE_boolean("is_train", False, "True for training, False for testing [T
 def WaterNet_test(name)->str:
   FLAGS = flags.FLAGS
   #文件路径
-  test_image_path = 'cache\\'+name
+  test_image_path = '/kaggle/working/testA/'+name
   image_test =  get_image(test_image_path,is_grayscale=False)
   shape = image_test.shape
   tf.reset_default_graph()

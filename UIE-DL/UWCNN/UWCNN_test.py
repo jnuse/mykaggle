@@ -9,7 +9,7 @@ from WaterNet.WaterNet_test import flags
 
 def UWCNN_test(filename)->str:
   FLAGS = flags.FLAGS
-  image_test = get_image('cache\\'+filename,is_grayscale=False)
+  image_test = get_image('/kaggle/working/testA/'+filename,is_grayscale=False)
   shape = image_test.shape
   with tf.Session() as sess:
     # with tf.device('/cpu:0'):

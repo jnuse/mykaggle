@@ -109,6 +109,7 @@ class T_CNN(object):
         result_h0 = result_h0.squeeze()
         name = self.name[:-4]+'_out.png'
         image_path0 = os.path.join(os.getcwd(), 'WaterNet/output/')
+        os.makedirs(image_path0, exist_ok=True)
         image_path = os.path.join(image_path0, name)
         imsave_lable(result_h0,image_path)
         print(f"保存到:{image_path}")

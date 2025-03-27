@@ -74,6 +74,7 @@ class T_CNN(object):
 
         result_h0 = result_h[id,:,:,:].reshape(h , w , 3)
         image_path0 = os.path.join(os.getcwd(), 'UWCNN/output/')
+        os.makedirs(image_path0, exist_ok=True)
         final = (result_h0+1.)/2 
         name = self.test_image_name[:-4]+'_out.png'
         image_path = os.path.join(image_path0, name)

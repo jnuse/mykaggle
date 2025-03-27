@@ -17,6 +17,8 @@ def msrcr_enhancement(
     # 多尺度Retinex处理
     l_retinex = np.zeros_like(l_channel)
     for scale in scales:
+        if scale % 2 == 0 or scale <= 0:
+            scale = max(3, scale + 1 if scale % 2 == 0 else scale)
         l_blur = cv2.GaussianBlur(l_channel, (scale, scale), 0)
         l_retinex += np.log(l_channel + 1) - np.log(l_blur + 1)
     l_retinex /= len(scales)

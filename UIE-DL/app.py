@@ -49,7 +49,7 @@ def batch_process(input_folder, output_folder, modes=['UWCNN', 'WaterNet']):
                     elapsed_time = time.time() - start_time
                     total_time += elapsed_time
                     # 移动结果到输出目录
-                    src_path = os.path.join(mode, "UWCNN/output/", output_name)  # 假设模型输出到此路径
+                    src_path = os.path.join(mode, "/kaggle/working/UIE-DL/UWCNN/output", output_name)  # 假设模型输出到此路径
                     dst_path = os.path.join(model_output_dir, output_name)
                     shutil.move(src_path, dst_path)
                     print(f"  {mode} done. Time: {elapsed_time:.2f}s")
@@ -61,7 +61,7 @@ def batch_process(input_folder, output_folder, modes=['UWCNN', 'WaterNet']):
                     elapsed_time = time.time() - start_time
                     total_time += elapsed_time
                     # 移动结果到输出目录
-                    src_path = os.path.join(mode, "WaterNet/output/", output_name)  # 假设模型输出到此路径
+                    src_path = os.path.join(mode, "/kaggle/working/UIE-DL/WaterNet/output", output_name)  # 假设模型输出到此路径
                     dst_path = os.path.join(model_output_dir, output_name)
                     shutil.move(src_path, dst_path)
                     print(f"  {mode} done. Time: {elapsed_time:.2f}s")

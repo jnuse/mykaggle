@@ -5,7 +5,7 @@ import json
 import io
 from pydub import AudioSegment
 
-novel = "圣墟.txt"
+novel = "软饭天王.txt"
 url = "http://127.0.0.1:9880/tts"
 payload = {
     "text_lang": "zh",
@@ -93,8 +93,18 @@ def save_chapter(volume, chapter, content):
                 print(f"请求失败,状态码: {response.status_code}")
                 print(f"错误信息: {response.text}")
                 return False
-    
-    file_path = f"{volume}/{chapter}.wav"
+    if len(volume)==0:
+        volume = "无名"
+    if len(chapter)==0:
+        chapter = "无名"
+    if len(volume) > 20:
+        volume = volume[:20]
+    if len(chapter) > 20:
+        chapter = chapter[:20]
+    # 创建输出目录
+    output_dir = "/kaggle/working/output"
+    os.makedirs(output_dir, exist_ok=True)
+    file_path = f"/kaggle/working/output/{volume}/{chapter}.wav"
     combined_audio.export(file_path, format="wav")
     
     print(f"WAV文件已成功生成并保存为 {file_path}")

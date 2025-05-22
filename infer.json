@@ -1,0 +1,22 @@
+{
+    "gpt_path": "model/纳西妲_ZH/纳西妲_ZH-e10.ckpt",
+    "sovits_path": "model/纳西妲_ZH/纳西妲_ZH_e10_s1400_l32.pth",
+    "cnhubert_base_path": "GPT_SoVITS/pretrained_models/chinese-hubert-base",
+    "bert_path": "GPT_SoVITS/pretrained_models/chinese-roberta-wwm-ext-large",
+    "prompt_language": "中文",
+    "text_language": "中文",
+    "how_to_cut": "凑四句一切",
+    "top_k": 20,
+    "top_p": 0.6,
+    "temperature": 0.6,
+    "ref_free": false,
+    "speed": 1.0,
+    "if_freeze": false,
+    "sample_steps": 8,
+    "if_sr": false,
+    "pause_second": 0.3,
+    "ref_wav_path": "model/纳西妲_ZH/reference_audios/中文/emotions/【默认】很抱歉地告诉大家，根据我们的调查，在梦境的背后隐藏着某种阴谋。.wav",
+    "prompt_text": "很抱歉地告诉大家，根据我们的调查，在梦境的背后隐藏着某种阴谋。",
+    "output_dir": "output/novel2audio",
+    "novel_path": "四合院之啪啪成首富.txt"
+} 
